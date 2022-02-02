@@ -15,6 +15,8 @@ let arrayImageSorted = []
 let lengthArrayImage =''
 let matchCard = [undefined,undefined]
 let cardWay = []
+let matchCount = 0
+let contTests=0
 contarCartas()
 
 function sortingImages(img,lengthArrayImage) {
@@ -63,6 +65,8 @@ function turnCard(cardRotate) {
     cardFrontFace.classList.add('hidden')
     cardWay.push(cardRotate)
     verifyCards(cardRotate)
+    contTests += 1;
+  
 }
 
 function verifyCards(cardRotate) {
@@ -75,16 +79,21 @@ function verifyCards(cardRotate) {
         console.log('acertou');
         cardWay.splice(0)
         cardWay.splice(1)
+        matchCount++;
+        verifyFinished()
 
     }else if(cardWay[1] != undefined) {
-        cardFront1.classList.remove('hidden')
-        cardBack1.classList.add('hidden')
-        cardFront2.classList.remove('hidden')
-        cardBack2.classList.add('hidden')
-        cardWay[0].classList.toggle('rotate')
-        cardWay[1].classList.toggle('rotate')
-        cardWay.splice(0)
-        cardWay.splice(1)
+        setTimeout(()=>{
+                cardFront1.classList.remove('hidden')
+                cardBack1.classList.add('hidden')
+                cardFront2.classList.remove('hidden')
+                cardBack2.classList.add('hidden')
+                cardWay[0].classList.toggle('rotate')
+                cardWay[1].classList.toggle('rotate')
+                cardWay.splice(0)
+                cardWay.splice(1)
+            },1000)
+    
 
     }else{
         console.log('nada acontece');
@@ -93,4 +102,12 @@ function verifyCards(cardRotate) {
 }
 function comparador() {
     return Math.random() - 0.5; 
+}
+function verifyFinished() {
+    setTimeout(()=>{
+           if(matchCount == lengthArrayImage){
+        alert(`VocÊ conseguiu em ${contTests} tentativas`)
+    }
+    },500)
+   
 }
