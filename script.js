@@ -18,13 +18,13 @@ let cardWay = []
 let matchCount = 0
 let contPLays=0
 
-let jogador  = 1
-let jogador1 = 0
-let jogador2 = 0
+let player  = 1
+let player1 = 0
+let player2 = 0
 let contp1 = 0
 let contp2 = 0
 let winnerplayer = 0
-let whowin = ''
+let whowinner = ''
 
 let minutes = ''
 let seconds = 0
@@ -69,11 +69,11 @@ function createCard(numeroCartas) {
         // criador de cartas
         let divMae = document.querySelector('.game')
         divMae.innerHTML += 
-        `   <div class="card" onclick='turnCard(this)'>
-        <div class ='card front-face'>
+        `   <div class="card" data-identifier="card" onclick='turnCard(this)'>
+        <div class ='card front-face' data-identifier="front-face">
         <img class ='image-papagaio' src="images/front.png" alt="papagaio"/>  
         </div>     
-        <div class ='card back-face hidden'>
+        <div class ='card  back-face hidden' data-identifier="back-face">
         <img class='imagem-desvirada' src='${arrayImageSorted[cont]}' alt='' />
         </div>  
         </div>`
@@ -87,13 +87,26 @@ function turnCard(cardRotate) {
     cardBackFace.classList.remove('hidden')
     cardFrontFace.classList.add('hidden')
     cardRotate.removeAttribute('onclick')
-    if (jogador == 1) {
+    if (player == 1) {
+        // playergaming.style.background = 'red'
         let cardchoice = cardRotate.querySelector('.back-face')
         cardchoice.classList.add('borderp1')
         
     }else{
         let cardchoice = cardRotate.querySelector('.back-face')
         cardchoice.classList.add('borderp2')
+    }
+    if (player ==1) {
+        let playerGamming1 = document.querySelector('.player1')
+        let playerGamming2 = document.querySelector('.player2')
+        playerGamming1.classList.add('turnGame')
+        playerGamming2.classList.remove('turnGame')
+        
+    }else{
+        let playerGamming1 = document.querySelector('.player1')
+        let playerGamming2 = document.querySelector('.player2')
+        playerGamming2.classList.add('turnGame')
+        playerGamming1.classList.remove('turnGame')
     }
     cardWay.push(cardRotate)
     verifyCards()
@@ -110,12 +123,12 @@ function verifyCards() {
         cardWay.splice(0)
         cardWay.splice(1)
         matchCount++;
-        if (jogador ==1) {
-            jogador1 ++;
+        if (player ==1) {
+            player1 ++;
             contp1++;
             document.querySelector('.scorep1').innerHTML =contp1
         }else{
-            jogador2 ++;
+            player2 ++;
             contp2++;
             document.querySelector('.scorep2').innerHTML =contp2
         }
@@ -133,14 +146,14 @@ function verifyCards() {
                 cardWay.splice(0)
                 cardWay.splice(1)
             },1000)
-            if (jogador == 1) {
-                jogador = 2
+            if (player == 1) {
+                player = 2
                 contp1++
                cardBack1.classList.remove('borderp1')
                cardBack2.classList.remove('borderp1')
                document.querySelector('.scorep1').innerHTML =contp1
             }else{
-                jogador =1
+                player =1
                 contp2++;
                 cardBack1.classList.remove('borderp2')
                cardBack2.classList.remove('borderp2')
@@ -155,18 +168,18 @@ function comparador() {
 
 function verifyFinished() {
     setTimeout(()=>{
-            if (jogador1 >jogador2) {
+            if (player1 >player2) {
                 winnerplayer = contp1
-                whowin ='Player1'
+                whowinner ='Player1'
             }else{
                 winnerplayer = contp2
-                whowin ='Player2'
+                whowinner ='Player2'
             }
            if(matchCount == lengthArrayImage){
                if(minutes != ''){
-                alert(`${whowin} venceu em ${winnerplayer} tentativas e ${minutes}minutos em ${seconds} segundos!`)
+                alert(`${whowinner} venceu em ${winnerplayer} tentativas e ${minutes}minutos em ${seconds} segundos!`)
                }else{
-                alert(`${whowin} venceu em ${winnerplayer} tentativas em ${seconds} segundos!`)}
+                alert(`${whowinner} venceu em ${winnerplayer} tentativas em ${seconds} segundos!`)}
         let question = prompt('Voces desejam começar um novo jogo? [y]/[n]?')
         if (question.toUpperCase() == 'Y') {
             resetGame()
@@ -187,11 +200,11 @@ function resetGame() {
     cardWay = []
     matchCount = 0
     contPLays=0
-    jogador  = 1
-    jogador1 = 0
-    jogador2 = 0
+    player  = 1
+    player1 = 0
+    player2 = 0
     winnerplayer = 0
-    whowin = ''
+    whowinner = ''
     contp1 = 0
     contp2 = 0
     minutes = ''
