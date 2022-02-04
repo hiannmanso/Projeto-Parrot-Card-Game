@@ -1,3 +1,8 @@
+*{
+    --color-p1 : rgb(252, 0, 13);
+    --color-p2 : rgb(5, 0, 255);
+}
+
 body{
     background-color: #EEF9BF;
 }
@@ -54,4 +59,51 @@ header h1{
 
 .rotate{
     transform:rotateY(180deg);
+}
+.borderp1{
+    border: 3px solid var(--color-p1);
+    border-radius: 5px;
+   
+}
+.borderp2{
+    border: 3px solid var(--color-p2);
+    border-radius: 5px;
+   
+}
+.footer{
+    position: absolute;
+    bottom: 6%;
+    right: 6%;
+    display: flex;
+
+}
+.timer{
+    position: fixed;
+    top: 40px;
+    right: 50px;
+    font-size: 60px;
+    color: red;
+}
+.player1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.player1, .player2{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    background-color: #A7E9AF;
+    border-radius: 10px;
+    color: #75B79E;
+    width: 100px;
+    height: 100px;
 }
