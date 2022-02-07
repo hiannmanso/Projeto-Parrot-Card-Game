@@ -77,10 +77,11 @@ header h1{
    
 }
 .footer{
-    position: absolute;
-    bottom: 6%;
-    right: 6%;
+    position: fixed;
+    bottom: 0;
+    right: 0%;
     display: flex;
+    margin-top:100px
 
 }
 .timer{
