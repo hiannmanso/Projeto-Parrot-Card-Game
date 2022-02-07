@@ -7,6 +7,10 @@
 body{
     background-color: #EEF9BF;
 }
+.header{
+    position: relative;
+    margin-top: 20px;
+}
 
 header h1{
     font-family: Roboto;
@@ -20,6 +24,7 @@ header h1{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     margin-top: 40px;
     margin-bottom: 47px;
 }
@@ -79,9 +84,9 @@ header h1{
 
 }
 .timer{
-    position: fixed;
-    top: 40px;
-    right: 50px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
     font-size: 60px;
     color: red;
 }
@@ -98,9 +103,9 @@ header h1{
     line-height: 66px;
     letter-spacing: -0.004em;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     margin-right: 20px;
     background-color: #A7E9AF;
     border-radius: 10px;
@@ -108,6 +113,40 @@ header h1{
     width: 100px;
     height: 100px;
 }
+
 .turnGame{
     box-shadow: 5px 10px;
+}
+.tela{
+    width:100vw;
+    height:100vh;
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:5;
+}
+
+@media( max-width: 574px) {
+
+    .header h1{
+        font-size: 36px;
+    }
+    .timer{
+        font-size: 36px;
+    }
+
+}
+
+@media (max-width:400px){
+    .header h1{
+        font-size: 26px;
+    }
+}
+
+@media (max-width:650px){
+    .footer{
+        display:none;
+    }
+
 }

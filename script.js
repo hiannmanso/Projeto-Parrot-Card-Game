@@ -30,7 +30,7 @@ let minutes = ''
 let seconds = 0
 contarCartas()
 
-setInterval(() => {
+const timer = setInterval(() => {
     seconds ++;
     if (seconds ===60) {
         minutes ++;
@@ -134,6 +134,8 @@ function verifyCards() {
         }
         verifyFinished()
     }else if(cardWay[1] != undefined) {
+        let screen = document.querySelector('.tela')
+        screen.style.display = 'flex'
         setTimeout( () => {
                 cardFront1.classList.remove('hidden')
                 cardBack1.classList.add('hidden')
@@ -146,6 +148,7 @@ function verifyCards() {
                 cardWay.splice(0)
                 cardWay.splice(1)
             },1000)
+           
             if (player == 1) {
                 player = 2
                 contp1++
@@ -159,6 +162,7 @@ function verifyCards() {
                cardBack2.classList.remove('borderp2')
                document.querySelector('.scorep2').innerHTML =contp2
             }
+            setTimeout( () =>{screen.style.display = 'none'},1000)
         }
 }
 
@@ -167,6 +171,7 @@ function comparador() {
 }
 
 function verifyFinished() {
+    clearInterval(timer)
     setTimeout(()=>{
             if (player1 >player2) {
                 winnerplayer = contp1
@@ -190,26 +195,5 @@ function verifyFinished() {
 }
 
 function resetGame() {
-    let documentall = document.querySelector('.game')
-    documentall.innerHTML =''
-    numeroCartas ='';
-    imageCont = 0
-    arrayImageSorted = []
-    lengthArrayImage =''
-    matchCard = [undefined,undefined]
-    cardWay = []
-    matchCount = 0
-    contPLays=0
-    player  = 1
-    player1 = 0
-    player2 = 0
-    winnerplayer = 0
-    whowinner = ''
-    contp1 = 0
-    contp2 = 0
-    minutes = ''
-    seconds = 0
-    document.querySelector('.scorep1').innerHTML =contp1
-    document.querySelector('.scorep2').innerHTML =contp2
-    contarCartas()
+    document.location.reload(true)
 }
